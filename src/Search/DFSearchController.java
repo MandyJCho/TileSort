@@ -8,4 +8,7 @@ public class DFSearchController extends SearchController {
     DFSearchController(char[] tiles) {
         super(tiles);
     }
+
+    // search
+    void findPath() {}
 }

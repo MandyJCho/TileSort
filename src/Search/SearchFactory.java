@@ -32,29 +32,35 @@ public class SearchFactory {
         public String getType() {
             return type;
         }
+
+        public static Type fromStringValue(String value) {
+            return lookup.getOrDefault(value, null);
+        }
     }
 
-    public static SearchController getSearchController (Type type, char[] input, String userSelection) {
-        Type selectionType = Type.valueOf(userSelection);
-        SearchController  searchController;
+    public static SearchController getSearchController (char[] input, String userSelection) {
+        Type selectionType = Type.fromStringValue(userSelection);
+        SearchController  searchController = null;
 
-        // Handle user searchcontroller selection
+        // Handle user selection
         switch(selectionType) {
             case BFS:
+                System.out.println("b");
                 searchController = new BFSearchController(input);
                 break;
             case DFS:
+                System.out.println("d");
                 searchController = new DFSearchController(input);
                 break;
-//            case UCS:
-//                System.out.println("U");
-//                break;
-//            case GS:
-//                System.out.println("G");
-//                break;
-//            case ASTAR:
-//                System.out.println("A");
-//                break;
+            case UCS:
+                System.out.println("U");
+                break;
+            case GS:
+                System.out.println("G");
+                break;
+            case ASTAR:
+                System.out.println("A");
+                break;
             default:
                 System.out.println("Invalid entry");
                 System.exit(0);

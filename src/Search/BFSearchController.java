@@ -8,4 +8,7 @@ public class BFSearchController extends SearchController {
     BFSearchController(char[] tiles) {
         super(tiles);
     }
+
+    // search
+    void findPath() {}
 }
