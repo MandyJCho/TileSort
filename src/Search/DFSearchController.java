@@ -3,12 +3,12 @@ package Search;
 /**
  * Created by Mandy Cho :) on 1/24/18.
  */
-public class DFSearchController extends SearchController {
+public class DFSearchController  {
 
-    DFSearchController(char[] tiles) {
-        super(tiles);
+    DFSearchController(String input) {
+
     }
 
-    // search
     void findPath() {}
+
 }

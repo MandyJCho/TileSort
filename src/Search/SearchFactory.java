@@ -8,7 +8,7 @@ import java.util.Map;
  * Created by Mandy Cho :) on 1/24/18.
  */
 public class SearchFactory {
-    public static enum Type {
+    public enum Type {
         BFS("bfs"),
         DFS("dfs"),
         UCS("ucs"),
@@ -38,19 +38,19 @@ public class SearchFactory {
         }
     }
 
-    public static SearchController getSearchController (char[] input, String userSelection) {
+    public static Search getSearchController (String startArrangement, String userSelection) {
         Type selectionType = Type.fromStringValue(userSelection);
-        SearchController  searchController = null;
+        Search  searchController = null;
 
         // Handle user selection
         switch(selectionType) {
             case BFS:
                 System.out.println("b");
-                searchController = new BFSearchController(input);
+                searchController = new BFSearchController(startArrangement, selectionType);
                 break;
             case DFS:
                 System.out.println("d");
-                searchController = new DFSearchController(input);
+                // searchController = new DFSearchController(startArrangement);
                 break;
             case UCS:
                 System.out.println("U");
