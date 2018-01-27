@@ -1,8 +1,8 @@
 package Search;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
+import javafx.util.Pair;
+
+import java.util.*;
 
 /**
  * Created by Mandy Cho :) on 1/24/18.
@@ -10,26 +10,32 @@ import java.util.Queue;
 public class BFSearchController implements Search {
     SearchFactory.Type type;
     String startArrangement;
-    Queue<String> queue;
-    HashMap<String, String> foundArrangements;
+    Queue<Pair<String, Integer>> queue;
 
     BFSearchController(String startArrangement, SearchFactory.Type type) {
         this.startArrangement = startArrangement;
         this.type = type;
-        queue = new LinkedList<>();
-        queue.offer(this.startArrangement);
         foundArrangements.put(startArrangement, null);
+        queue = new LinkedList<>();
+        queue.addAll(SearchHelper.addSuccessors(startArrangement, foundArrangements));
     }
 
-
     public void findPath() {
-        while (!queue.isEmpty() ) {
-            String arrangement = queue.poll();
+        System.out.println(startArrangement);
+        while (!queue.isEmpty()) {
+            Pair<String, Integer> tileInfo = queue.poll();
+            String arrangement = tileInfo.getKey();
+
+            // Print
+            System.out.println("Move " + tileInfo.getValue() + " " + arrangement);
+
             // Goal test
             if (SearchHelper.isGoalState(arrangement)) {
-                SearchHelper.devisePath(arrangement, foundArrangements);
+                System.out.println("Did it");
+                //SearchHelper.devisePath(foundArrangements, type, arrangement);
                 break;
             }
+
             // Get successors
             queue.addAll(SearchHelper.addSuccessors(arrangement, foundArrangements));
         }
