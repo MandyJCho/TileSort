@@ -1,5 +1,7 @@
 package Search;
 
+import javafx.util.Pair;
+
 import java.util.*;
 
 /**
@@ -7,7 +9,7 @@ import java.util.*;
  */
 public class SearchHelper {
 
-    static boolean isGoalState(String arrangement) {
+    public static boolean isGoalState(String arrangement) {
         boolean foundX = false, foundW = false;
 
         for (char tile : arrangement.toCharArray()) {
@@ -21,9 +23,9 @@ public class SearchHelper {
         return true;
     }
 
-    static List<String> addSuccessors(final String arrangement, Map<String, String> foundArrangements) {
+    public static List<Pair<String, Integer>> addSuccessors(final String arrangement, Map<String, String> foundArrangements) {
         final int xIndex = arrangement.indexOf('x');
-        List<String> newSuccessors = new ArrayList<>();
+        List<Pair<String, Integer>> newSuccessors = new ArrayList<Pair<String, Integer>>();
 
         for(int i = 0; i < arrangement.length(); i++) {
             StringBuilder successor = new StringBuilder(arrangement);
@@ -31,13 +33,17 @@ public class SearchHelper {
             successor.replace(i, i+1, "x");
             successor.replace(xIndex, xIndex + 1, color+"");
 
-            if (!foundArrangements.containsKey(successor.toString())) newSuccessors.add(successor.toString());
+            String successorKey = successor.toString();
+            if (!foundArrangements.containsKey(successorKey)) {
+                newSuccessors.add(new Pair(successorKey, i));
+                foundArrangements.put(successorKey, arrangement);
+            }
         }
 
         return newSuccessors;
     }
 
-    static void devisePath(Map<String, String> foundArrangements, SearchFactory.Type type, String arrangement, String startArrangement) {
+    public static void devisePath(Map<String, String> foundArrangements, SearchFactory.Type type, String arrangement) {
         Stack<String> path = new Stack<>();
         while (arrangement != null) {
 
