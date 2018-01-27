@@ -45,7 +45,6 @@ public class SearchFactory {
         // Handle user selection
         switch(selectionType) {
             case BFS:
-                System.out.println("b");
                 searchController = new BFSearchController(startArrangement, selectionType);
                 break;
             case DFS:

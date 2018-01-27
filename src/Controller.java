@@ -15,7 +15,9 @@ public class Controller {
         String filePath = args[args.length - 1], userSelection = args[args.length - 2].toLowerCase();
 
         getStartArrangement(filePath);
-        SearchController searchController = SearchFactory.getSearchController(startArrangement, userSelection);
+        Search searchController = SearchFactory.getSearchController(startArrangement, userSelection);
+
+        searchController.findPath();
     }
 
     private static void getStartArrangement(String filePath) throws IOException {
