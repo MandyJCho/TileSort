@@ -8,38 +8,8 @@ import java.util.Map;
  * Created by Mandy Cho :) on 1/24/18.
  */
 public class SearchFactory {
-    public enum Type {
-        BFS("bfs"),
-        DFS("dfs"),
-        UCS("ucs"),
-        GS("gs"),
-        ASTAR("a-star");
-
-        private final String type;
-        static private final Map<String, Type> lookup;
-        static {
-            lookup = new HashMap<>();
-            Arrays.stream(Type.values())
-                    .forEach((value) -> {
-                        lookup.put(value.getType(), value);
-                    });
-        }
-
-        Type(String type) {
-            this.type = type;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public static Type fromStringValue(String value) {
-            return lookup.getOrDefault(value, null);
-        }
-    }
-
     public static Search getSearchController (String startArrangement, String userSelection) {
-        Type selectionType = Type.fromStringValue(userSelection);
+        SearchHelper.Type selectionType = SearchHelper.Type.fromStringValue(userSelection);
         Search  searchController = null;
 
         // Handle user selection

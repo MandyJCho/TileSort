@@ -21,9 +21,10 @@ public class Controller {
     }
 
     private static void getStartArrangement(String filePath) throws IOException {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
             startArrangement = bufferedReader.readLine()
-                    .trim();
+                                             .trim()
+                                             .toUpperCase();
         } catch(Exception e) {
             e.printStackTrace();
         }
