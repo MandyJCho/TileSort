@@ -9,6 +9,6 @@ interface Searchable {
     void findPath();
     boolean isGoalState(String arrangement);
     List<String> getSuccessors(String arrangement);
-    void devisePath(SearchHelper.Type type, String arrangement);
-    void addSuccessors(String arrangement);
+    void devisePath(String arrangement);
+    void processSuccessors(String arrangement);
 }

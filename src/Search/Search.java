@@ -45,12 +45,12 @@ public abstract class Search implements Searchable {
         return newSuccessors;
     }
 
-    public void devisePath(SearchHelper.Type type, String arrangement) {
+    public void devisePath(String arrangement) {
         Stack<String> pathNodes = new Stack<>();
         pathNodes.push(arrangement);
         String tile;
 
-        System.out.println("\nFinal Result for " + type + ":");
+        System.out.println("\n\nFinal Result for " + type + ":");
         while ((tile = foundArrangements.getOrDefault(arrangement, null)) != null) {
             pathNodes.push(tile);
             arrangement = foundArrangements.get(arrangement);

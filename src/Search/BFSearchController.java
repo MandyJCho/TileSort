@@ -12,7 +12,7 @@ public class BFSearchController extends Search {
         super(type, startArrangement);
         foundArrangements.put(startArrangement, null);
         queue = new LinkedList<>();
-        addSuccessors(startArrangement);
+        processSuccessors(startArrangement);
     }
 
     public void findPath() {
@@ -25,16 +25,17 @@ public class BFSearchController extends Search {
 
             // Goal test
             if (isGoalState(arrangement)) {
-                devisePath(type, arrangement);
+                devisePath(arrangement);
                 break;
             }
 
-            addSuccessors(arrangement);
-
+            // Add successors
+            processSuccessors(arrangement);
         }
     }
 
-    public void addSuccessors(String arrangement) {
+    public void processSuccessors(String arrangement) {
+        // add unique successors
         for (String successor : getSuccessors(arrangement)) {
             if (!foundArrangements.containsKey(successor)) {
                 foundArrangements.put(successor, arrangement);
@@ -42,6 +43,7 @@ public class BFSearchController extends Search {
             }
         }
     }
+
 }
 
 
