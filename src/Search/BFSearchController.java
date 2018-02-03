@@ -1,45 +1,45 @@
 package Search;
 
-import javafx.util.Pair;
-
 import java.util.*;
 
 /**
  * Created by Mandy Cho :) on 1/24/18.
  */
-public class BFSearchController implements Search {
-    SearchHelper.Type type;
-    String startArrangement;
-    Queue<Pair<String, Integer>> queue;
+public class BFSearchController extends Search {
+    private Queue<String> queue;
 
-    BFSearchController(String startArrangement, SearchHelper.Type type) {
-        this.startArrangement = startArrangement;
-        this.type = type;
+    BFSearchController(SearchHelper.Type type, String startArrangement) {
+        super(type, startArrangement);
         foundArrangements.put(startArrangement, null);
         queue = new LinkedList<>();
-        queue.addAll(SearchHelper.addSuccessors(
-                new Pair(startArrangement, startArrangement.indexOf('X')),
-                foundArrangements)
-        );
+        addSuccessors(startArrangement);
     }
 
     public void findPath() {
         System.out.println(startArrangement);
         while (!queue.isEmpty()) {
-            Pair<String, Integer> tile = queue.poll();
-            String arrangement = tile.getKey();
+            String arrangement = queue.poll();
 
             // Print
-            System.out.println("Move " + tile.getValue() + " " + arrangement);
+            System.out.println("Move " + arrangement.indexOf("X") + " " + arrangement);
 
             // Goal test
-            if (SearchHelper.isGoalState(arrangement)) {
-                SearchHelper.devisePath(foundArrangements, type, arrangement);
+            if (isGoalState(arrangement)) {
+                devisePath(type, arrangement);
                 break;
             }
 
-            // Get successors
-            queue.addAll(SearchHelper.addSuccessors(tile, foundArrangements));
+            addSuccessors(arrangement);
+
+        }
+    }
+
+    public void addSuccessors(String arrangement) {
+        for (String successor : getSuccessors(arrangement)) {
+            if (!foundArrangements.containsKey(successor)) {
+                foundArrangements.put(successor, arrangement);
+                queue.offer(successor);
+            }
         }
     }
 }

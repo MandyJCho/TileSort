@@ -1,9 +1,5 @@
 package Search;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by Mandy Cho :) on 1/24/18.
  */
@@ -15,11 +11,10 @@ public class SearchFactory {
         // Handle user selection
         switch(selectionType) {
             case BFS:
-                searchController = new BFSearchController(startArrangement, selectionType);
+                searchController = new BFSearchController(selectionType, startArrangement);
                 break;
             case DFS:
-                System.out.println("d");
-                // searchController = new DFSearchController(startArrangement);
+                searchController = new DFSearchController(selectionType, startArrangement);
                 break;
             case UCS:
                 System.out.println("U");
