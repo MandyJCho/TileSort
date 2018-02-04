@@ -10,5 +10,4 @@ interface Searchable {
     boolean isGoalState(String arrangement);
     List<String> getSuccessors(String arrangement);
     void devisePath(String arrangement);
-    void processSuccessors(String arrangement);
 }

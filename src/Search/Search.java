@@ -6,11 +6,11 @@ import java.util.*;
  * Created by Mandy Cho :) on 1/24/18.
  */
 public abstract class Search implements Searchable {
-    protected SearchHelper.Type type;
+    private Type type;
     protected String startArrangement;
     Map<String, String> foundArrangements;
 
-    Search(SearchHelper.Type type, String startArrangement) {
+    Search(Type type, String startArrangement) {
         this.type = type;
         this.startArrangement = startArrangement;
         foundArrangements = new HashMap<>();

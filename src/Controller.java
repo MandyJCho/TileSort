@@ -1,9 +1,6 @@
 import Search.*;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Mandy Cho :) on 1/23/18.
@@ -13,9 +10,9 @@ public class Controller {
 
     public static void main(String...args) throws IOException {
         String filePath = args[args.length - 1], userSelection = args[args.length - 2].toLowerCase();
-
+        boolean includeCost = args[1].equals("-cost");
         getStartArrangement(filePath);
-        Search searchController = SearchFactory.getSearchController(startArrangement, userSelection);
+        Search searchController = SearchFactory.createController(startArrangement, userSelection, includeCost);
 
         searchController.findPath();
     }

@@ -5,11 +5,10 @@ import java.util.*;
 /**
  * Created by Mandy Cho :) on 1/24/18.
  */
-public class DFSearchController extends Search {
+public class DFSearchController extends Search implements BasicSearchable {
     private Stack<String> stack;
-    Set<String> visited;
 
-    DFSearchController(SearchHelper.Type type, String startArrangement) {
+    DFSearchController(Type type, String startArrangement) {
         super(type, startArrangement);
         foundArrangements.put(startArrangement, null);
         stack = new Stack<>();
@@ -40,7 +39,6 @@ public class DFSearchController extends Search {
         }
     }
 
-    @Override
     public void processSuccessors(String arrangement) {
         List<String> successors = getSuccessors(arrangement);
 
