@@ -1,5 +1,9 @@
 package Search;
 
+import Search.Basic.BFSearchController;
+import Search.Basic.DFSearchController;
+import Search.BestFirst.UCSearchController;
+
 /**
  * Created by Mandy Cho :) on 1/24/18.
  */

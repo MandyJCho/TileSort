@@ -1,4 +1,6 @@
-package Search;
+package Search.BestFirst;
+
+import Search.Search;
 
 import java.util.PriorityQueue;
 
@@ -7,50 +9,35 @@ import java.util.PriorityQueue;
  */
 public abstract class BestFirstSearch extends Search implements BestFirstSearchable {
     protected PriorityQueue<Node> priorityQueue;
-    boolean includeCost;
-    Node startNode;
+    protected boolean includeCost;
+    protected Node startNode;
+    int time;
 
-    final static class Node {
-        final String arrangement;
-        int discovery;
-        int gValue;
-        int hValue;
-
-        Node(String arrangement, int discovery, int gValue, int hValue) {
-            this.arrangement = arrangement;
-            this.discovery = discovery;
-            this.gValue = gValue;
-            this.hValue = hValue;
-        }
-
-        protected int getCost() {
-            return gValue + hValue;
-        }
-    }
-
-    BestFirstSearch(Type type, String startArrangement, boolean includesCost) {
+    BestFirstSearch(Search.Type type, String startArrangement, boolean includesCost) {
         super(type, startArrangement);
+
+        this.startNode = startNode;
+        time = 0;
         priorityQueue = new PriorityQueue<>((a, b) -> {
             if (a.getCost() == b.getCost()) return b.discovery - a.discovery ;
             else return a.getCost() - b.getCost();
         });
     }
 
+    protected void setStartNode(Node startNode) {
+        this.startNode = startNode;
+    }
+
     public int h() {
         return 0;
     }
 
-    public int g(){
-        // use include cost here
+    public int g(Node node) {
+        if (includeCost) {
+            node.gValue++;
+        }
+
         return 0;
-    }
-
-    public void processSuccessors(String arrangement) {
-        // check if already visited
-        for(String successor : getSuccessors(arrangement))
-            if (!foundArrangements.containsKey(successor)) {}
-
-        // otherwise add
     }
 
     /**

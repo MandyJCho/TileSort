@@ -1,4 +1,6 @@
-package Search;
+package Search.Basic;
+
+import Search.*;
 
 import java.util.*;
 
@@ -8,7 +10,7 @@ import java.util.*;
 public class BFSearchController extends Search implements BasicSearchable {
     private Queue<String> queue;
 
-    BFSearchController(Type type, String startArrangement) {
+    public BFSearchController(Type type, String startArrangement) {
         super(type, startArrangement);
         foundArrangements.put(startArrangement, null);
         queue = new LinkedList<>();
@@ -35,6 +37,7 @@ public class BFSearchController extends Search implements BasicSearchable {
     }
 
     public void processSuccessors(String arrangement) {
+        // add unique successors
         for (String successor : getSuccessors(arrangement)) {
             if (!foundArrangements.containsKey(successor)) {
                 foundArrangements.put(successor, arrangement);

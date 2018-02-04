@@ -1,4 +1,6 @@
-package Search;
+package Search.Basic;
+
+import Search.*;
 
 import java.util.*;
 
@@ -8,7 +10,7 @@ import java.util.*;
 public class DFSearchController extends Search implements BasicSearchable {
     private Stack<String> stack;
 
-    DFSearchController(Type type, String startArrangement) {
+    public DFSearchController(Type type, String startArrangement) {
         super(type, startArrangement);
         foundArrangements.put(startArrangement, null);
         stack = new Stack<>();

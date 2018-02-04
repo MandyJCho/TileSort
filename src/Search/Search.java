@@ -8,9 +8,9 @@ import java.util.*;
 public abstract class Search implements Searchable {
     private Type type;
     protected String startArrangement;
-    Map<String, String> foundArrangements;
+    protected Map<String, String> foundArrangements;
 
-    Search(Type type, String startArrangement) {
+    protected Search(Type type, String startArrangement) {
         this.type = type;
         this.startArrangement = startArrangement;
         foundArrangements = new HashMap<>();
