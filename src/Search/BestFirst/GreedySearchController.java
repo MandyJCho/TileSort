@@ -29,7 +29,7 @@ public class GreedySearchController extends BestFirstSearch {
         for(String successor : getSuccessors(node.arrangement))
             if (!foundArrangements.containsKey(successor)) {
                 Node successorNode = new Node.Builder(successor, node.arrangement, ++time)
-                        .hValue(h(node.arrangement))
+                        .hValue(h(successor))
                         .build();
 
                 priorityQueue.offer(successorNode);

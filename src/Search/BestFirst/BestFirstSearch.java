@@ -3,7 +3,6 @@ package Search.BestFirst;
 import Search.*;
 
 import java.util.PriorityQueue;
-import java.util.Stack;
 
 /**
  * Created by Mandy Cho :) on 2/2/18.
@@ -14,19 +13,26 @@ public abstract class BestFirstSearch extends Search implements BestFirstSearcha
 
     BestFirstSearch(Type type, String startArrangement, boolean includeCost) {
         super(type, startArrangement, includeCost);
-
         time = 0;
-        priorityQueue = new PriorityQueue<>((a, b) -> {
-            if (a.getCost() == b.getCost()) return a.discovery - b.discovery;
-            else return a.getCost() - b.getCost();
-        });
+        priorityQueue = new PriorityQueue<>((a, b) -> (a.getCost() == b.getCost()) ? a.discovery - b.discovery
+                                                : a.getCost() - b.getCost());
         foundArrangements.put(startArrangement, null);
-
     }
 
     @Override
     public int h(String arrangement) {
-        return 0;
+        int black = 0;
+        for(char c : arrangement.toCharArray())
+            if (c == 'B') black++;
+
+        int i = 0, count = arrangement.charAt(black) == 'X' ? 0 : 1;
+
+        while(i < black)
+            if (arrangement.charAt(i++) != 'B') count++;
+        while (++i < arrangement.length())
+            if (arrangement.charAt(i) != 'W') count++;
+
+        return count;
     }
 
     @Override
