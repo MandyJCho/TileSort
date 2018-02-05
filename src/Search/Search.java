@@ -64,10 +64,8 @@ public abstract class Search implements Searchable {
 
         while (!pathNodes.isEmpty()) {
             String pathNode = pathNodes.pop();
-            System.out.print("Step " + count++ + ": move " +  pathNode.indexOf('X') + " " + pathNode + " ");
-            if (includeCost) System.out.print("(c="
-                    + Math.abs(previous.indexOf("X") - pathNode.indexOf("X"))
-                    + ")");
+            System.out.print("Step " + count++ + ": move " +  pathNode.indexOf('X') + " " + pathNode);
+            if (includeCost) System.out.print(" (c=" + Math.abs(previous.indexOf("X") - pathNode.indexOf("X")) + ")");
             System.out.println();
             previous = pathNode;
         }

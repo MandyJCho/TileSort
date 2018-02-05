@@ -2,6 +2,7 @@ package Search;
 
 import Search.Basic.BFSearchController;
 import Search.Basic.DFSearchController;
+import Search.BestFirst.AStarSearchControllar;
 import Search.BestFirst.GreedySearchController;
 import Search.BestFirst.UCSearchController;
 
@@ -28,7 +29,7 @@ public class SearchFactory {
                 searchController = new GreedySearchController(selectionType, startArrangement, includeCost);
                 break;
             case ASTAR:
-                System.out.println("A");
+                searchController = new AStarSearchControllar(selectionType, startArrangement, includeCost);
                 break;
             default:
                 System.out.println("Invalid entry");

@@ -17,8 +17,8 @@ public class UCSearchController extends BestFirstSearch {
     @Override
     public void printMove(Node node) {
         // Print
-        System.out.print("Move " + node.arrangement.indexOf("X") + " " + node.arrangement + " ");
-        if (includeCost) System.out.print("(c="
+        System.out.print("Move " + node.arrangement.indexOf("X") + " " + node.arrangement);
+        if (includeCost) System.out.print(" (c="
                 + Math.abs(node.predecessor.indexOf("X") - node.arrangement.indexOf("X"))
                 + ")");
         System.out.println();
