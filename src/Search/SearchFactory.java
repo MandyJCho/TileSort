@@ -15,10 +15,10 @@ public class SearchFactory {
         // Handle user selection
         switch(selectionType) {
             case BFS:
-                searchController = new BFSearchController(selectionType, startArrangement);
+                searchController = new BFSearchController(selectionType, startArrangement, includeCost);
                 break;
             case DFS:
-                searchController = new DFSearchController(selectionType, startArrangement);
+                searchController = new DFSearchController(selectionType, startArrangement, includeCost);
                 break;
             case UCS:
                 searchController = new UCSearchController(selectionType, startArrangement, includeCost);

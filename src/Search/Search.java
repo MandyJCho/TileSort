@@ -9,10 +9,12 @@ public abstract class Search implements Searchable {
     private Type type;
     protected String startArrangement;
     protected Map<String, String> foundArrangements;
+    protected boolean includeCost;
 
-    protected Search(Type type, String startArrangement) {
+    protected Search(Type type, String startArrangement, boolean includeCost) {
         this.type = type;
         this.startArrangement = startArrangement;
+        this.includeCost = includeCost;
         foundArrangements = new HashMap<>();
     }
 

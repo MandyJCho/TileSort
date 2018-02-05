@@ -10,8 +10,8 @@ import java.util.*;
 public class BFSearchController extends Search implements BasicSearchable {
     private Queue<String> queue;
 
-    public BFSearchController(Type type, String startArrangement) {
-        super(type, startArrangement);
+    public BFSearchController(Type type, String startArrangement, boolean includeCost) {
+        super(type, startArrangement, includeCost);
         foundArrangements.put(startArrangement, null);
         queue = new LinkedList<>();
         processSuccessors(startArrangement);

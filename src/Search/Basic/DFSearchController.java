@@ -10,8 +10,8 @@ import java.util.*;
 public class DFSearchController extends Search implements BasicSearchable {
     private Stack<String> stack;
 
-    public DFSearchController(Type type, String startArrangement) {
-        super(type, startArrangement);
+    public DFSearchController(Type type, String startArrangement, boolean includeCost) {
+        super(type, startArrangement, includeCost);
         foundArrangements.put(startArrangement, null);
         stack = new Stack<>();
         processSuccessors(startArrangement);
@@ -24,6 +24,7 @@ public class DFSearchController extends Search implements BasicSearchable {
             String arrangement = stack.pop();
 
             // Mark the visited node
+            if (foundArrangements.containsKey(arrangement)) continue;
             foundArrangements.put(arrangement, previous);
 
             // Print
