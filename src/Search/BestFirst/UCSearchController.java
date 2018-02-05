@@ -20,21 +20,22 @@ public class UCSearchController extends BestFirstSearch {
 
         while (!priorityQueue.isEmpty()) {
             Node node = priorityQueue.poll();
+            String previous = node.predecessor.arrangement;
 
             // Mark the visited node
             if (foundArrangements.containsKey(node.arrangement)) continue;
-            foundArrangements.put(node.arrangement, node.predecessor);
+            foundArrangements.put(node.arrangement, previous);
 
             // Print
             System.out.print("Move " + node.arrangement.indexOf("X") + " " + node.arrangement + " ");
-            if (includeCost) System.out.println("(c="
-                                                + Math.abs(node.predecessor.indexOf("X") - node.arrangement.indexOf("X"))
+            if (includeCost) System.out.print("(c="
+                                                + Math.abs(previous.indexOf("X") - node.arrangement.indexOf("X"))
                                                 + ")");
-            else System.out.println();
+            System.out.println();
 
             // Goal test
             if (isGoalState(node.arrangement)) {
-                devisePath(node.arrangement);
+                printPath(node.arrangement);
                 break;
             }
 
@@ -49,7 +50,7 @@ public class UCSearchController extends BestFirstSearch {
         for(String successor : getSuccessors(node.arrangement))
             if (!foundArrangements.containsKey(successor)) {
                 int g = includeCost ? Math.abs(successor.indexOf("X") - nodeX) : 0;
-                Node successorNode = new Node.Builder(successor, node.arrangement, ++time)
+                Node successorNode = new Node.Builder(successor, node, ++time)
                                              .gValue(g + node.gValue)
                                              .build();
 

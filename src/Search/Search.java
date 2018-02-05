@@ -6,7 +6,7 @@ import java.util.*;
  * Created by Mandy Cho :) on 1/24/18.
  */
 public abstract class Search implements Searchable {
-    private Type type;
+    protected Type type;
     protected String startArrangement;
     protected Map<String, String> foundArrangements;
     protected boolean includeCost;
@@ -47,7 +47,7 @@ public abstract class Search implements Searchable {
         return newSuccessors;
     }
 
-    public void devisePath(String arrangement) {
+    public void printPath(String arrangement) {
         Stack<String> pathNodes = new Stack<>();
         pathNodes.push(arrangement);
         String tile;
@@ -59,11 +59,17 @@ public abstract class Search implements Searchable {
         }
 
         int count = 0;
-        System.out.println(pathNodes.pop());
+        String previous = pathNodes.pop();
+        System.out.println(previous);
+
         while (!pathNodes.isEmpty()) {
-            String node = pathNodes.pop();
-            System.out.println("Step " + count++ + ": move " +  node.indexOf('X') + " " + node);
+            String pathNode = pathNodes.pop();
+            System.out.print("Step " + count++ + ": move " +  pathNode.indexOf('X') + " " + pathNode + " ");
+            if (includeCost) System.out.print("(c="
+                    + Math.abs(previous.indexOf("X") - pathNode.indexOf("X"))
+                    + ")");
+            System.out.println();
+            previous = pathNode;
         }
     }
-
 }

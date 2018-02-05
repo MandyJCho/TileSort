@@ -5,19 +5,19 @@ package Search.BestFirst;
  */
 class Node {
     final String arrangement;
-    final String predecessor;
+    final Node predecessor;
     int discovery;
     int gValue;
     int hValue;
 
     public static class Builder {
         private String arrangement;
-        private String predecessor;
+        private Node predecessor;
         private int discovery;
         private int gValue = 0;
         private int hValue = 0;
 
-        public Builder(String arrangement, String predecessor, int discovery) {
+        protected Builder(String arrangement, Node predecessor, int discovery) {
             this.arrangement = arrangement;
             this.predecessor = predecessor;
             this.discovery = discovery;

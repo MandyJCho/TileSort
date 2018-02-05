@@ -3,6 +3,7 @@ package Search.BestFirst;
 import Search.*;
 
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 /**
  * Created by Mandy Cho :) on 2/2/18.
@@ -50,5 +51,4 @@ public abstract class BestFirstSearch extends Search implements BestFirstSearcha
      from the initial node to n).
      4. Otherwise, add successors(n) to L. Return to step 2.
      */
-
 }

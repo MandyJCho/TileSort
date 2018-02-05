@@ -32,7 +32,7 @@ public class DFSearchController extends Search implements BasicSearchable {
 
             // Goal test
             if (isGoalState(arrangement)) {
-                devisePath(arrangement);
+                printPath(arrangement);
                 break;
             }
 
