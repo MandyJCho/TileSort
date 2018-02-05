@@ -21,11 +21,41 @@ public abstract class BestFirstSearch extends Search implements BestFirstSearcha
             else return a.getCost() - b.getCost();
         });
         foundArrangements.put(startArrangement, null);
+
+    }
+
+    @Override
+    public int h(String arrangement) {
+        return 0;
+    }
+
+    @Override
+    public void findPath(){
+        System.out.println(startArrangement);
+
+        while (!priorityQueue.isEmpty()) {
+            Node node = priorityQueue.poll();
+
+            // Mark the visited node
+            if (foundArrangements.containsKey(node.arrangement)) continue;
+            foundArrangements.put(node.arrangement, node.predecessor);
+
+            // Print
+            printMove(node);
+
+            // Goal test
+            if (isGoalState(node.arrangement)) {
+                printPath(node.arrangement);
+                break;
+            }
+
+            // Add successors
+            processSuccessors(node);
+        }
     }
 
     /**
-     UCS implies sorting the queue according to
-     the g function, GS implies sorting the queue according to the h function, and A∗
+     GS implies sorting the queue according to the h function, and A∗
      implies sorting the queue according to the evaluation function f, where f = g + h.) If two or more nodes in your
      data structure have the same f cost, break ties using a FIFO strategy (i.e., prefer nodes that have
      been in the data structure for the longest time). Also, note that you will need a means of avoiding
