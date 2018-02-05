@@ -1,6 +1,6 @@
 package Search.BestFirst;
 
-import Search.Search;
+import Search.*;
 
 import java.util.PriorityQueue;
 
@@ -9,35 +9,17 @@ import java.util.PriorityQueue;
  */
 public abstract class BestFirstSearch extends Search implements BestFirstSearchable {
     protected PriorityQueue<Node> priorityQueue;
-    protected boolean includeCost;
-    protected Node startNode;
     int time;
 
-    BestFirstSearch(Search.Type type, String startArrangement, boolean includesCost) {
-        super(type, startArrangement);
+    BestFirstSearch(Type type, String startArrangement, boolean includeCost) {
+        super(type, startArrangement, includeCost);
 
-        this.startNode = startNode;
         time = 0;
         priorityQueue = new PriorityQueue<>((a, b) -> {
-            if (a.getCost() == b.getCost()) return b.discovery - a.discovery ;
+            if (a.getCost() == b.getCost()) return a.discovery - b.discovery;
             else return a.getCost() - b.getCost();
         });
-    }
-
-    protected void setStartNode(Node startNode) {
-        this.startNode = startNode;
-    }
-
-    public int h() {
-        return 0;
-    }
-
-    public int g(Node node) {
-        if (includeCost) {
-            node.gValue++;
-        }
-
-        return 0;
+        foundArrangements.put(startArrangement, null);
     }
 
     /**
@@ -48,7 +30,7 @@ public abstract class BestFirstSearch extends Search implements BestFirstSearcha
      been in the data structure for the longest time). Also, note that you will need a means of avoiding
      loops by checking whether or not a state has already been visited. You should not expand a state
      that has previously been expanded.
-     For UCS, assume that g(n) = number of moves executed so far
+
      For GS, assume that h(n) = number of tiles out of place (e.g., in the 3-position example we
      started with 2 out-of-place tiles)
      For A∗, estimate the total path cost as f(n) = g(n) + h(n) where g and h are defined as above
