@@ -16,15 +16,6 @@ public class GreedySearchController extends BestFirstSearch {
     }
 
     @Override
-    public void printMove(Node node) {
-        System.out.print("Move " + node.arrangement.indexOf("X") + " " + node.arrangement + " ");
-        if (includeCost) System.out.print("(c="
-                + h(node.arrangement)
-                + ")");
-        System.out.println();
-    }
-
-    @Override
     public void processSuccessors(Node node) {
         for(String successor : getSuccessors(node.arrangement))
             if (!foundArrangements.containsKey(successor)) {
