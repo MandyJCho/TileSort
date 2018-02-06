@@ -69,11 +69,4 @@ public abstract class BestFirstSearch extends Search implements BestFirstSearcha
         }
     }
 
-    /**
-     A∗ implies sorting the queue according to the evaluation function f, where f = g + h.)
-
-     For GS, assume that h(n) = number of tiles out of place (e.g., in the 3-position example we
-     started with 2 out-of-place tiles)
-     For A∗, estimate the total path cost as f(n) = g(n) + h(n) where g and h are defined as above
-     */
 }

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TileSort:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TileSort_jar</output-path>
+    <root id="archive" name="TileSort.jar">
+      <element id="module-output" name="TileSort" />
+    </root>
+  </artifact>
+</component>
