@@ -40,13 +40,3 @@ Jung Cho
    my findings with the TA and we both couldn't seem to find a reason why Move 0 XBWBW (c=2) was
    chosen on the 4th line rather than Move 2 BWXBW (c=2).
    
-• how to run your program.
-    search [-cost] <BFS|DFS|UCS|GS|A-star> <path to inputfile>
-    
-If there is trouble running the file, run TileSort.jar with the command.
-Also if the input file is giving trouble, edit the input.txt file with the 
-arrangement you're looking to grade and run:
-
-
-    search [-cost] <BFS|DFS|UCS|GS|A-star> input.txt
-    
