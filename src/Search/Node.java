@@ -4,11 +4,11 @@ package Search;
  * Created by Mandy Cho :) on 2/4/18.
  */
 public class Node {
-    final String arrangement;
-    final Node predecessor;
-    int discovery;
-    int gValue;
-    int hValue;
+    public final String arrangement;
+    public final Node predecessor;
+    public final int discovery;
+    public final int gValue;
+    public final int hValue;
 
     public static class Builder {
         private String arrangement;
@@ -51,12 +51,11 @@ public class Node {
         return gValue + hValue;
     }
 
-    public String getArrangement() { return arrangement; }
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
-        return ((Node) obj).arrangement.equals(arrangement);
+        Node node = (Node) obj;
+        return node.arrangement.equals(arrangement);
     }
 
     @Override

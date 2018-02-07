@@ -1,4 +1,4 @@
-package Search.Basic;
+package Search.Algorithms;
 
 import Search.*;
 
@@ -13,7 +13,6 @@ public class BFSearchController extends Search {
     public BFSearchController(Type type, String startArrangement, boolean includeCost) {
         super(type, startArrangement, includeCost);
         Node node = new Node.Builder(startArrangement, null, 0).build();
-        found.add(node);
         queue = new LinkedList<>();
         processSuccessors(node);
     }
@@ -24,10 +23,9 @@ public class BFSearchController extends Search {
 
     public void processSuccessors(Node node) {
         // add unique successors
-        for (String successor : getSuccessors(node.getArrangement())) {
-            Node successorNode = new Node.Builder(successor, node, time++).build();
-            if (!found.contains(successorNode))
-                queue.offer(successorNode);
+        for (String successor : getSuccessors(node.arrangement)) {
+            if (!found.contains(successor))
+                queue.offer(new Node.Builder(successor, node, time++).build());
         }
     }
 

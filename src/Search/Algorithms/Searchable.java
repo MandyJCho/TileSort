@@ -1,7 +1,8 @@
-package Search;
+package Search.Algorithms;
 
 import java.util.List;
-import java.util.Stack;
+
+import Search.*;
 
 /**
  * Created by Mandy Cho :) on 2/2/18.

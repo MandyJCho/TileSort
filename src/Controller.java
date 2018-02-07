@@ -1,8 +1,7 @@
+import Search.Algorithms.Search;
 import Search.*;
 
-import javax.sound.midi.SysexMessage;
 import java.io.*;
-import java.util.Scanner;
 
 /**
  * Created by Mandy Cho :) on 1/23/18.

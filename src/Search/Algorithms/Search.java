@@ -1,6 +1,9 @@
-package Search;
+package Search.Algorithms;
 
 import java.util.*;
+
+import Search.Type;
+import Search.Node;
 
 /**
  * Created by Mandy Cho :) on 1/24/18.
@@ -9,14 +12,15 @@ public abstract class Search implements Searchable {
     public int time = 0;
     protected Type type;
     protected String startArrangement;
-    protected Set<Node> found;
+    protected Set<String> found;
     protected boolean includeCost;
 
     protected Search(Type type, String startArrangement, boolean includeCost) {
         this.type = type;
         this.startArrangement = startArrangement;
         this.includeCost = includeCost;
-        found = new HashSet();
+        found = new HashSet<>();
+        found.add(startArrangement);
     }
 
     public void findPath() {
@@ -24,11 +28,14 @@ public abstract class Search implements Searchable {
         while (!isEmpty()) {
             Node node = getNextNode();
 
-            if (found.contains(node)) continue;
-            found.add(node);
+            if (found.contains(node.arrangement)) continue;
+            found.add(node.arrangement);
 
-            String arrangement = node.getArrangement();
-            System.out.println("Move " + arrangement.indexOf("X") + " " + arrangement);
+            String arrangement = node.arrangement;
+            System.out.print("Move " + arrangement.indexOf("X") + " " + arrangement);
+            if (includeCost) System.out.print(" (c=" + (Math.abs(node.predecessor.arrangement.indexOf("X")
+                                                        - node.arrangement.indexOf("X"))) + ")");
+            System.out.println();
 
             if (isGoalState(arrangement)) {
                 printPath(node);
@@ -38,6 +45,8 @@ public abstract class Search implements Searchable {
             processSuccessors(node);
         }
     }
+
+
 
     public boolean isGoalState(String arrangement) {
         boolean foundX = false, foundW = false;

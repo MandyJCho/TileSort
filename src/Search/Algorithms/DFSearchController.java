@@ -1,4 +1,4 @@
-package Search.Basic;
+package Search.Algorithms;
 
 import Search.*;
 
@@ -13,7 +13,6 @@ public class DFSearchController extends Search {
     public DFSearchController(Type type, String startArrangement, boolean includeCost) {
         super(type, startArrangement, includeCost);
         Node node = new Node.Builder(startArrangement, null, 0).build();
-        found.add(node);
         stack = new Stack<>();
         processSuccessors(node);
     }
@@ -23,7 +22,7 @@ public class DFSearchController extends Search {
     public Node getNextNode() { return stack.pop(); }
 
     public void processSuccessors(Node node) {
-        List<String> successors = getSuccessors(node.getArrangement());
+        List<String> successors = getSuccessors(node.arrangement);
 
         for(int i = successors.size() - 1; i >= 0; i--) {
             String successor = successors.get(i);
