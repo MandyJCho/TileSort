@@ -16,11 +16,10 @@ public class UCSearchController extends BestFirstSearch {
 
     @Override
     public void processSuccessors(Node node) {
-        int nodeX = node.arrangement.indexOf("X");
         for(String successor : getSuccessors(node.arrangement))
             if (!found.contains(successor)) {
                 Node successorNode = new Node.Builder(successor, node, ++time)
-                                             .gValue(g(successor, node))
+                                             .gValue(successor, node, includeCost)
                                              .build();
 
                 priorityQueue.offer(successorNode);

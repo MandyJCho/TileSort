@@ -12,7 +12,6 @@ public interface Searchable {
     Node getNextNode();
     boolean isEmpty();
     boolean isGoalState(String arrangement);
-    int h(Node node);
     void findPath();
     void printPath(Node tile);
     void processSuccessors(Node node);

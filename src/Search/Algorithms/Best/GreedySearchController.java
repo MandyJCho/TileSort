@@ -1,6 +1,5 @@
 package Search.Algorithms.Best;
 
-import Search.Algorithms.Best.BestFirstSearch;
 import Search.Node;
 import Search.Type;
 
@@ -11,7 +10,7 @@ public class GreedySearchController extends BestFirstSearch {
     public GreedySearchController(Type type, String startArrangement, boolean includeCost) {
         super(type, startArrangement, includeCost);
         Node startNode = new Node.Builder(startArrangement, null, 0)
-                .hValue(h(startArrangement))
+                .hValue(startArrangement)
                 .build();
 
         processSuccessors(startNode);
@@ -22,7 +21,7 @@ public class GreedySearchController extends BestFirstSearch {
         for(String successor : getSuccessors(node.arrangement))
             if (!found.contains(successor)) {
                 Node successorNode = new Node.Builder(successor, node, ++time)
-                        .hValue(h(successor))
+                        .hValue(successor)
                         .build();
 
                 priorityQueue.offer(successorNode);

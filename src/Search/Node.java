@@ -8,7 +8,7 @@ public class Node {
     public final Node predecessor;
     public final int discovery;
     public final int gValue;
-    public final int hValue;
+    private final int hValue;
 
     public static class Builder {
         private String arrangement;
@@ -23,13 +23,25 @@ public class Node {
             this.discovery = discovery;
         }
 
-        public Builder gValue(int gValue) {
-            this.gValue = gValue;
+        public Builder gValue(String successor, Node parent, boolean includeCost) {
+            if (parent == null || !includeCost) gValue = 0;
+            else gValue = Math.abs(successor.indexOf("X") - parent.arrangement.indexOf('X')) + parent.gValue;
+
             return this;
         }
 
-        public Builder hValue(int hValue) {
-            this.hValue = hValue;
+        public Builder hValue(String arrangement) {
+                boolean foundX = false;
+                int count = 0, space = 0;
+                for (char c: arrangement.toCharArray()) {
+                    if ((foundX && c=='B') || (!foundX && c=='W')) count++;
+                    else if (c == 'X') foundX = !foundX;
+
+                    if (c == 'B') ++space;
+                }
+
+             hValue = arrangement.charAt(space) != 'X' ? count + 1 : count;
+
             return this;
         }
 
@@ -54,6 +66,9 @@ public class Node {
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
+
+        if (getClass() != obj.getClass()) return false;
+
         Node node = (Node) obj;
         return node.arrangement.equals(arrangement);
     }

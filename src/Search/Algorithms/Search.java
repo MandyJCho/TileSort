@@ -97,9 +97,4 @@ public abstract class Search implements Searchable {
             previous = pathNode;
         }
     }
-
-    @Override
-    public int h(Node node) {
-        return 0;
-    }
 }

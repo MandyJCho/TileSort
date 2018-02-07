@@ -1,6 +1,7 @@
 package Search;
 
 import Search.Algorithms.BFSearchController;
+import Search.Algorithms.Best.AStarSearchController;
 import Search.Algorithms.Best.GreedySearchController;
 import Search.Algorithms.DFSearchController;
 import Search.Algorithms.Search;
@@ -28,9 +29,9 @@ public class SearchFactory {
             case GS:
                 searchController = new GreedySearchController(selectionType, startArrangement, includeCost);
                 break;
-//            case ASTAR:
-//                searchController = new AStarSearchController(selectionType, startArrangement, includeCost);
-//                break;
+            case ASTAR:
+                searchController = new AStarSearchController(selectionType, startArrangement, includeCost);
+                break;
             default:
                 System.out.println("Invalid entry");
                 System.exit(0);

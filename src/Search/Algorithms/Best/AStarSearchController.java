@@ -1,7 +1,5 @@
 package Search.Algorithms.Best;
 
-import Search.Algorithms.Best.BestFirstSearch;
-import Search.Algorithms.Search;
 import Search.Node;
 import Search.Type;
 
@@ -20,8 +18,8 @@ public class AStarSearchController extends BestFirstSearch {
         for(String successor : getSuccessors(node.arrangement))
             if (!found.contains(successor)) {
                 Node successorNode = new Node.Builder(successor, node, ++time)
-                        .gValue(g(successor, node))
-                        .hValue(h(successor))
+                        .gValue(successor, node, includeCost)
+                        .hValue(successor)
                         .build();
 
                 priorityQueue.offer(successorNode);

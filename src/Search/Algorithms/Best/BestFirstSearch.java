@@ -1,7 +1,8 @@
 package Search.Algorithms.Best;
 
-import Search.*;
 import Search.Algorithms.Search;
+import Search.Node;
+import Search.Type;
 
 import java.util.PriorityQueue;
 
@@ -15,23 +16,6 @@ public abstract class BestFirstSearch extends Search {
         super(type, startArrangement, includeCost);
         priorityQueue = new PriorityQueue<>((a, b) -> (a.getCost() == b.getCost()) ? a.discovery - b.discovery
                                                 : a.getCost() - b.getCost());
-    }
-
-    int g(String successor, Node parent) {
-        return includeCost ? Math.abs(successor.indexOf("X") - parent.arrangement.indexOf('X')) + parent.gValue: 0;
-    }
-
-    int h(String arrangement) {
-        int w = 0, count = 0;
-        for (char c: arrangement.toCharArray()) {
-            if (c == 'W') w++;
-            else if (c == 'B' & w > 0) {
-                w--;
-                count +=2;
-            }
-        }
-
-        return count;
     }
 
     @Override
