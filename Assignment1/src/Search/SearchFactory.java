@@ -2,9 +2,9 @@ package Search;
 
 import Search.Basic.BFSearchController;
 import Search.Basic.DFSearchController;
-//import Search.BestFirst.AStarSearchController;
-//import Search.BestFirst.GreedySearchController;
-//import Search.BestFirst.UCSearchController;
+import Search.BestFirst.AStarSearchController;
+import Search.BestFirst.GreedySearchController;
+import Search.BestFirst.UCSearchController;
 
 /**
  * Created by Mandy Cho :) on 1/24/18.
@@ -22,15 +22,15 @@ public class SearchFactory {
             case DFS:
                 searchController = new DFSearchController(selectionType, startArrangement, includeCost);
                 break;
-//            case UCS:
-//                searchController = new UCSearchController(selectionType, startArrangement, includeCost);
-//                break;
-//            case GS:
-//                searchController = new GreedySearchController(selectionType, startArrangement, includeCost);
-//                break;
-//            case ASTAR:
-//                searchController = new AStarSearchController(selectionType, startArrangement, includeCost);
-//                break;
+            case UCS:
+                searchController = new UCSearchController(selectionType, startArrangement, includeCost);
+                break;
+            case GS:
+                searchController = new GreedySearchController(selectionType, startArrangement, includeCost);
+                break;
+            case ASTAR:
+                searchController = new AStarSearchController(selectionType, startArrangement, includeCost);
+                break;
             default:
                 System.out.println("Invalid entry");
                 System.exit(0);

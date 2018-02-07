@@ -6,37 +6,16 @@ import java.util.*;
  * Created by Mandy Cho :) on 1/24/18.
  */
 public abstract class Search implements Searchable {
-    public int time = 0;
     protected Type type;
     protected String startArrangement;
-    protected Set<Node> found;
+    protected Map<String, String> foundArrangements;
     protected boolean includeCost;
 
     protected Search(Type type, String startArrangement, boolean includeCost) {
         this.type = type;
         this.startArrangement = startArrangement;
         this.includeCost = includeCost;
-        found = new HashSet();
-    }
-
-    public void findPath() {
-        System.out.println(startArrangement);
-        while (!isEmpty()) {
-            Node node = getNextNode();
-
-            if (found.contains(node)) continue;
-            found.add(node);
-
-            String arrangement = node.getArrangement();
-            System.out.println("Move " + arrangement.indexOf("X") + " " + arrangement);
-
-            if (isGoalState(arrangement)) {
-                printPath(node);
-                break;
-            }
-
-            processSuccessors(node);
-        }
+        foundArrangements = new HashMap<>();
     }
 
     public boolean isGoalState(String arrangement) {
@@ -68,14 +47,15 @@ public abstract class Search implements Searchable {
         return newSuccessors;
     }
 
-    public void printPath(Node tile) {
+    public void printPath(String arrangement) {
         Stack<String> pathNodes = new Stack<>();
-        Node node = tile;
+        pathNodes.push(arrangement);
+        String tile;
 
         System.out.println("\n\nFinal Result for " + type + ":");
-        while (node != null) {
-            pathNodes.push(node.arrangement);
-            node = node.predecessor;
+        while ((tile = foundArrangements.getOrDefault(arrangement, null)) != null) {
+            pathNodes.push(tile);
+            arrangement = foundArrangements.get(arrangement);
         }
 
         int count = 0;

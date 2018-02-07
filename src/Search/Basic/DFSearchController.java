@@ -7,49 +7,29 @@ import java.util.*;
 /**
  * Created by Mandy Cho :) on 1/24/18.
  */
-public class DFSearchController extends Search implements BasicSearchable {
-    private Stack<String> stack;
+public class DFSearchController extends Search {
+    private Stack<Node> stack;
 
     public DFSearchController(Type type, String startArrangement, boolean includeCost) {
         super(type, startArrangement, includeCost);
-        foundArrangements.put(startArrangement, null);
+        Node node = new Node.Builder(startArrangement, null, 0).build();
+        found.add(node);
         stack = new Stack<>();
-        processSuccessors(startArrangement);
+        processSuccessors(node);
     }
 
-    public void findPath() {
-        System.out.println(startArrangement);
-        String previous = startArrangement;
-        while (!stack.isEmpty()) {
-            String arrangement = stack.pop();
+    public boolean isEmpty() { return stack.isEmpty(); }
 
-            // Mark the visited node
-            if (foundArrangements.containsKey(arrangement)) continue;
-            foundArrangements.put(arrangement, previous);
+    public Node getNextNode() { return stack.pop(); }
 
-            // Print
-            System.out.println("Move " + arrangement.indexOf("X") + " " + arrangement);
-
-            // Goal test
-            if (isGoalState(arrangement)) {
-                printPath(arrangement);
-                break;
-            }
-
-            // Add successors
-            processSuccessors(arrangement);
-            previous = arrangement;
-        }
-    }
-
-    public void processSuccessors(String arrangement) {
-        List<String> successors = getSuccessors(arrangement);
+    public void processSuccessors(Node node) {
+        List<String> successors = getSuccessors(node.getArrangement());
 
         for(int i = successors.size() - 1; i >= 0; i--) {
             String successor = successors.get(i);
-            if (!foundArrangements.containsKey(successor))
-                stack.push(successor);
+            if (!found.contains(successor))
+                stack.push(new Node.Builder(successor, node, time++).build());
         }
     }
-
 }
+

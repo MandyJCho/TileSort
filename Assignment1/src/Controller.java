@@ -11,8 +11,19 @@ public class Controller {
     private static String startArrangement;
 
     public static void main(String...args) throws IOException {
-        String filePath = args[args.length - 1], userSelection = args[args.length - 2].toLowerCase();
-        boolean includeCost = args[1].equals("-cost");
+        String[] cmd;
+        System.out.println(args.length);
+        if (args.length == 0) {
+            System.out.println("Enter command");
+            Scanner scan = new Scanner(System.in);
+            cmd = scan.nextLine().split("\\s+");
+            System.out.println();
+        } else cmd = args;
+
+
+
+        String filePath = cmd[cmd.length - 1], userSelection = cmd[cmd.length - 2].toLowerCase();
+        boolean includeCost = cmd[1].equals("-cost");
         getStartArrangement(filePath);
         Search searchController = SearchFactory.createController(startArrangement, userSelection, includeCost);
 

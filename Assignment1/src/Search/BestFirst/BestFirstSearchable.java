@@ -1,7 +1,5 @@
 package Search.BestFirst;
 
-import Search.Node;
-
 /**
  * Created by Mandy Cho :) on 2/3/18.
  */
