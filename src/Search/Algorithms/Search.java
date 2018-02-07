@@ -46,8 +46,6 @@ public abstract class Search implements Searchable {
         }
     }
 
-
-
     public boolean isGoalState(String arrangement) {
         boolean foundX = false, foundW = false;
 
@@ -98,5 +96,10 @@ public abstract class Search implements Searchable {
             System.out.println();
             previous = pathNode;
         }
+    }
+
+    @Override
+    public int h(Node node) {
+        return 0;
     }
 }

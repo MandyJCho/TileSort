@@ -9,8 +9,7 @@ import java.util.PriorityQueue;
  * Created by Mandy Cho :) on 2/2/18.
  */
 public abstract class BestFirstSearch extends Search {
-    protected PriorityQueue<Node> priorityQueue;
-    int time;
+    PriorityQueue<Node> priorityQueue;
 
     public BestFirstSearch(Type type, String startArrangement, boolean includeCost) {
         super(type, startArrangement, includeCost);
@@ -18,7 +17,11 @@ public abstract class BestFirstSearch extends Search {
                                                 : a.getCost() - b.getCost());
     }
 
-    public int h(String arrangement) {
+    int g(String successor, Node parent) {
+        return includeCost ? Math.abs(successor.indexOf("X") - parent.arrangement.indexOf('X')) + parent.gValue: 0;
+    }
+
+    int h(String arrangement) {
         int w = 0, count = 0;
         for (char c: arrangement.toCharArray()) {
             if (c == 'W') w++;
