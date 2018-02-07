@@ -31,16 +31,15 @@ public class Node {
         }
 
         public Builder hValue(String arrangement) {
-                boolean foundX = false;
-                int count = 0, space = 0;
-                for (char c: arrangement.toCharArray()) {
-                    if ((foundX && c=='B') || (!foundX && c=='W')) count++;
-                    else if (c == 'X') foundX = !foundX;
+            int b = 0;
+            for(char c: arrangement.toCharArray())
+                if (c == 'B') b++;
 
-                    if (c == 'B') ++space;
-                }
+            for(int i = 0; i < b; i++)
+                if (arrangement.charAt(i) != 'B') hValue++;
 
-             hValue = arrangement.charAt(space) != 'X' ? count + 1 : count;
+            for (int i = b+1; i < arrangement.length(); i++)
+                if (arrangement.charAt(i) != 'W') hValue++;
 
             return this;
         }
