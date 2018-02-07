@@ -11,20 +11,21 @@ import Search.Node;
 public abstract class Search implements Searchable {
     public int time = 0;
     protected Type type;
-    protected String startArrangement;
     protected Set<String> found;
     protected boolean includeCost;
 
-    protected Search(Type type, String startArrangement, boolean includeCost) {
+    protected Search(Type type, boolean includeCost) {
         this.type = type;
-        this.startArrangement = startArrangement;
         this.includeCost = includeCost;
         found = new HashSet<>();
-        found.add(startArrangement);
     }
 
     public void findPath() {
-        System.out.println(startArrangement);
+        Node start = getNextNode();
+        System.out.println(start.arrangement);
+        found.add(start.arrangement);
+        processSuccessors(start);
+
         while (!isEmpty()) {
             Node node = getNextNode();
 
@@ -33,8 +34,10 @@ public abstract class Search implements Searchable {
 
             String arrangement = node.arrangement;
             System.out.print("Move " + arrangement.indexOf("X") + " " + arrangement);
-            if (includeCost) System.out.print(" (c=" + (Math.abs(node.predecessor.arrangement.indexOf("X")
-                                                        - node.arrangement.indexOf("X"))) + ")");
+            if (includeCost) {
+                int cost = Math.abs(node.predecessor.arrangement.indexOf("X") - node.arrangement.indexOf("X"));
+                System.out.print(" (c=" + cost + ")");
+            }
             System.out.println();
 
             if (isGoalState(arrangement)) {

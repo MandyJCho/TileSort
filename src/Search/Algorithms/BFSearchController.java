@@ -11,10 +11,9 @@ public class BFSearchController extends Search {
     private Queue<Node> queue;
 
     public BFSearchController(Type type, String startArrangement, boolean includeCost) {
-        super(type, startArrangement, includeCost);
-        Node node = new Node.Builder(startArrangement, null, 0).build();
+        super(type, includeCost);
         queue = new LinkedList<>();
-        processSuccessors(node);
+        queue.offer(new Node.Builder(startArrangement, null, 0).build());
     }
 
     public boolean isEmpty() { return queue.isEmpty(); }

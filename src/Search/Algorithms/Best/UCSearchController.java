@@ -8,10 +8,7 @@ import Search.Type;
  */
 public class UCSearchController extends BestFirstSearch {
     public UCSearchController(Type type, String startArrangement, boolean includeCost) {
-        super(type, startArrangement, includeCost);
-
-        Node node = new Node.Builder(startArrangement, null, 0).build();
-        processSuccessors(node);
+        super(type, includeCost, new Node.Builder(startArrangement, null, 0).build());
     }
 
     @Override

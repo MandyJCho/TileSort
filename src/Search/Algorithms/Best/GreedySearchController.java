@@ -8,12 +8,7 @@ import Search.Type;
  */
 public class GreedySearchController extends BestFirstSearch {
     public GreedySearchController(Type type, String startArrangement, boolean includeCost) {
-        super(type, startArrangement, includeCost);
-        Node startNode = new Node.Builder(startArrangement, null, 0)
-                .hValue(startArrangement)
-                .build();
-
-        processSuccessors(startNode);
+        super(type, includeCost, new Node.Builder(startArrangement, null, 0).build());
     }
 
     @Override

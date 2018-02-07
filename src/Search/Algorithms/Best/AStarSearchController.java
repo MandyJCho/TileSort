@@ -8,9 +8,7 @@ import Search.Type;
  */
 public class AStarSearchController extends BestFirstSearch {
     public AStarSearchController(Type type, String startArrangement, boolean includeCost) {
-        super(type, startArrangement, includeCost);
-        Node startNode = new Node.Builder(startArrangement, null, 0).build();
-        processSuccessors(startNode);
+        super(type, includeCost, new Node.Builder(startArrangement, null, 0).build());
     }
 
     @Override

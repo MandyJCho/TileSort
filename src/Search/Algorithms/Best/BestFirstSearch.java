@@ -12,10 +12,11 @@ import java.util.PriorityQueue;
 public abstract class BestFirstSearch extends Search {
     PriorityQueue<Node> priorityQueue;
 
-    public BestFirstSearch(Type type, String startArrangement, boolean includeCost) {
-        super(type, startArrangement, includeCost);
+    public BestFirstSearch(Type type, boolean includeCost, Node start) {
+        super(type, includeCost);
         priorityQueue = new PriorityQueue<>((a, b) -> (a.getCost() == b.getCost()) ? a.discovery - b.discovery
                                                 : a.getCost() - b.getCost());
+        priorityQueue.offer(start);
     }
 
     @Override

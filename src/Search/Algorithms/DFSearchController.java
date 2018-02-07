@@ -11,10 +11,9 @@ public class DFSearchController extends Search {
     private Stack<Node> stack;
 
     public DFSearchController(Type type, String startArrangement, boolean includeCost) {
-        super(type, startArrangement, includeCost);
-        Node node = new Node.Builder(startArrangement, null, 0).build();
+        super(type, includeCost);
         stack = new Stack<>();
-        processSuccessors(node);
+        stack.push(new Node.Builder(startArrangement, null, 0).build());
     }
 
     public boolean isEmpty() { return stack.isEmpty(); }
